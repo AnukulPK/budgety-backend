@@ -6,13 +6,19 @@ public class ExpenseDTO {
     private String description;
     private Double amount;
     private Date date;
+    private String category;
+    private String currency;
+    private String notes;
 
     public ExpenseDTO(){}
 
-    public ExpenseDTO(String description, Double amount, Date date){
+    public ExpenseDTO(String description, Double amount, Date date, String category, String currency, String notes){
         this.description=description;
         this.amount=amount;
         this.date=date;
+        this.category=category;
+        this.currency=currency;
+        this.notes=notes;
     }
 
     public String getDescription(){
@@ -22,6 +28,35 @@ public class ExpenseDTO {
     public void setDescription(String description){
         this.description=description;
     }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
 
     public Double getAmount(){
         return amount;

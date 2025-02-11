@@ -17,6 +17,36 @@ public class Expense {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    private String category;
+
+    private String currency;
+
+    private String notes;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     // Default constructor (required by JPA)
     public Expense() {}
 
