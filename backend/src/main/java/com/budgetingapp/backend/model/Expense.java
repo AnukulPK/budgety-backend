@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "expenses") // Explicitly naming the table
 public class Expense {
 
     @Id
@@ -11,50 +12,26 @@ public class Expense {
     private Long id;
 
     private String description;
-
     private Double amount;
 
     @Temporal(TemporalType.DATE)
     private Date date;
 
     private String category;
-
     private String currency;
-
     private String notes;
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 
     // Default constructor (required by JPA)
     public Expense() {}
 
-    // Parameterized constructor
-    public Expense(String description, Double amount, Date date) {
+    // Parameterized constructor (includes all fields)
+    public Expense(String description, Double amount, Date date, String category, String currency, String notes) {
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.category = category;
+        this.currency = currency;
+        this.notes = notes;
     }
 
     // Getters and Setters
@@ -88,5 +65,29 @@ public class Expense {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
