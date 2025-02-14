@@ -13,12 +13,18 @@ public class ExpenseService {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-    public ExpenseService(ExpenseRepository expenseRepository){
+    public ExpenseService(ExpenseRepository expenseRepository)
+    {
         this.expenseRepository = expenseRepository;
     }
 
-    public List<Expense> getAllExpenses(){
+    public List<Expense> getAllExpenses()
+    {
         return expenseRepository.findAll();
+    }
+
+    public Expense addExpense(Expense expense){
+        return expenseRepository.save(expense);
     }
 
 }

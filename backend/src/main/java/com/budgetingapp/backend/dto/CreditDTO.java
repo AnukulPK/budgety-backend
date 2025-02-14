@@ -1,31 +1,22 @@
-package com.budgetingapp.backend.model;
+package com.budgetingapp.backend.dto;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "expense") // Explicitly naming the table
-public class Expense {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class CreditDTO {
+    private String source;
     private String description;
     private Double amount;
-
-    @Temporal(TemporalType.DATE)
     private Date date;
-
     private String category;
     private String currency;
     private String notes;
 
     // Default constructor (required by JPA)
-    public Expense() {}
+    public CreditDTO() {}
 
     // Parameterized constructor (includes all fields)
-    public Expense(String description, Double amount, Date date, String category, String currency, String notes) {
+    public CreditDTO(String source, String description, Double amount, Date date, String category, String currency, String notes) {
+        this.source = source;
         this.description = description;
         this.amount = amount;
         this.date = date;
@@ -34,13 +25,12 @@ public class Expense {
         this.notes = notes;
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
+    public String getSource() {
+        return source;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getDescription() {

@@ -2,7 +2,7 @@ package com.budgetingapp.backend.controller;
 
 import com.budgetingapp.backend.dto.ExpenseDTO;
 import com.budgetingapp.backend.model.Expense;
-import com.budgetingapp.backend.repository.ExpenseRepository;
+import com.budgetingapp.backend.service.ExpenseService;  // Import the service
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +15,20 @@ import java.util.List;
 public class ExpenseController {
 
     @Autowired
-    private ExpenseRepository expenseRepository;
+    private ExpenseService expenseService;  // Use the service instead of repository
 
-    public ExpenseController(ExpenseRepository expenseRepository){
-        this.expenseRepository=expenseRepository;
+    // Constructor-based injection (recommended)
+    public ExpenseController(ExpenseService expenseService) {
+        this.expenseService = expenseService;
     }
 
     @GetMapping
-    public List<Expense> getAllExpenses(){
-        List<Expense> expenses = expenseRepository.findAll();
-        return expenses;
+    public List<Expense> getAllExpenses() {
+        return expenseService.getAllExpenses();  // Use the service method
     }
 
     @PostMapping
-    public ResponseEntity<Expense> addExpense(@RequestBody ExpenseDTO expenseDTO){
+    public ResponseEntity<Expense> addExpense(@RequestBody ExpenseDTO expenseDTO) {
         Expense expense = new Expense(
                 expenseDTO.getDescription(),
                 expenseDTO.getAmount(),
@@ -37,9 +37,8 @@ public class ExpenseController {
                 expenseDTO.getCurrency(),
                 expenseDTO.getNotes()
         );
-        Expense savedExpense = expenseRepository.save(expense);
 
+        Expense savedExpense = expenseService.addExpense(expense);  // Use the service method
         return ResponseEntity.status(HttpStatus.CREATED).body(savedExpense);
     }
-
 }
