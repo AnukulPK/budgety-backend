@@ -41,4 +41,10 @@ public class ExpenseController {
         Expense savedExpense = expenseService.addExpense(expense);  // Use the service method
         return ResponseEntity.status(HttpStatus.CREATED).body(savedExpense);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody ExpenseDTO expenseDTO){
+        Expense updatedExpense = expenseService.updateExpense(id, expenseDTO);
+        return ResponseEntity.ok(updatedExpense);
+    }
 }
