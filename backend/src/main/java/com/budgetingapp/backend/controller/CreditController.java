@@ -42,4 +42,10 @@ public class CreditController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCredit);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Credit> updateCredit(@PathVariable Long id, @RequestBody CreditDTO creditDTO){
+        Credit updatedCredit = creditService.updateCredit(id, creditDTO);
+        return ResponseEntity.ok(updatedCredit);
+    }
+
 }

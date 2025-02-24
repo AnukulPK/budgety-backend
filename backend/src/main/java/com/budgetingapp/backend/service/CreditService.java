@@ -1,5 +1,6 @@
 package com.budgetingapp.backend.service;
 
+import com.budgetingapp.backend.dto.CreditDTO;
 import com.budgetingapp.backend.model.Credit;
 import com.budgetingapp.backend.repository.CreditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,15 @@ public class CreditService {
     }
 
 
+    public Credit updateCredit(Long id, CreditDTO creditDTO) {
+        return creditRepository.findById(id).map(credit->{
+            credit.setDescription(creditDTO.getDescription());
+            credit.setAmount(creditDTO.getAmount());
+            credit.setDate(creditDTO.getDate());
+            credit.setCategory(creditDTO.getCategory());
+            credit.setCurrency(creditDTO.getCurrency());
+            credit.setNotes(creditDTO.getNotes());
+            return creditRepository.save(credit);
+        }).orElseThrow(()->new RuntimeException("Credit not found with id: "+id));
+    }
 }
